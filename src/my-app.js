@@ -1,0 +1,59 @@
+/**
+ * @license
+ * Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+ * This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+ * The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+ * The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+ * Code distributed by Google as part of the polymer project is also
+ * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+ */
+
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import { setPassiveTouchGestures, setRootPath } from '@polymer/polymer/lib/utils/settings.js';
+import '@polymer/paper-icon-button/paper-icon-button.js';
+import './my-icons.js';
+import './logo.element';
+import './mc.element'
+
+// Gesture events like tap and track generated from touch will not be
+// preventable, allowing for better scrolling performance.
+setPassiveTouchGestures(true);
+
+// Set Polymer's root path to the same value we passed to our service worker
+// in `index.html`.
+setRootPath(MyAppGlobals.rootPath);
+
+class MyApp extends PolymerElement {
+  static get template() {
+    return html`
+      <style>
+        :host {
+          --app-primary-color: #4285f4;
+          --app-secondary-color: black;
+          width: 100%;
+          height: 100%;
+          display: block;
+        }
+        section {
+          width: 100%;
+          height: 100%;
+        }
+      </style>
+      <section>
+        <gdglx-logo></gdglx-logo>
+        <mail-chimp></mail-chimp>
+      </section>
+    `;
+  }
+
+  static get properties() {
+    return {
+     
+    };
+  }
+
+ 
+
+}
+
+window.customElements.define('my-app', MyApp);
